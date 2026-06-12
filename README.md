@@ -28,7 +28,7 @@ Built for home lab and educational use. Run only against machines you own.
 
 ---
 
-## Folder structure
+## Folder Structure
 
 ```
 lynkeus/
@@ -80,7 +80,7 @@ python3 main.py scanme.nmap.org -p 1-1024
 
 ## Requirements
 
-No external libraries — pure Python 3 standard library only.
+No external libraries, pure Python 3 standard library only. **FOR NOW**
 
 ```bash
 python3 --version   # Python 3.6+ required
