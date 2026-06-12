@@ -1,9 +1,6 @@
-# ─────────────────────────────────────────────
 # utils/ports.py
 # Lynkeus — port argument parser
 # Turns the -p flag into a clean list of integers
-# ─────────────────────────────────────────────
-
 
 def parse_ports(port_arg):
     """
@@ -20,14 +17,14 @@ def parse_ports(port_arg):
     for part in port_arg.split(","):
         part = part.strip()
 
-        # ── Handle range like '1-1024' ───────────────────────────
+        # Handle range like '1-1024'
         if "-" in part:
             start, end = part.split("-", 1)
             ports.extend(range(int(start), int(end) + 1))
 
-        # ── Handle single port like '80' ─────────────────────────
+        # Handle single port like '80'
         else:
             ports.append(int(part))
 
-    # ── Deduplicate and sort before returning ────────────────────
+    # Deduplicate and sort before returning
     return sorted(set(ports))
