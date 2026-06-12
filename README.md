@@ -1,4 +1,6 @@
 # Lynkeus
+![Image](assets/lynkeus_logo.jpg)
+
 ### *See through every wall.*
 
 > In Greek mythology, Lynkeus was the Argonaut gifted with superhuman vision —  
