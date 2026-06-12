@@ -1,14 +1,12 @@
-# ─────────────────────────────────────────────
 # output/display.py
 # Lynkeus — all terminal output lives here
 # Nothing else in the project prints to stdout
-# ─────────────────────────────────────────────
 
 import datetime
 from output.colors import GREEN, YELLOW, CYAN, DIM, BOLD, RESET
 
 
-# ── ASCII art banner printed at startup ──────────────────────────
+# ASCII art banner printed at startup
 LYNKEUS_ASCII = """
      :::            :::   :::   :::  :::    ::: :::::::::: :::    :::  ::::::::
     :+:          :+: :+: :+:+: :+:+: :+:  :+: :+:        :+:    :+: :+:    :+:
@@ -19,7 +17,7 @@ LYNKEUS_ASCII = """
 ########## ###     ### ###       ###  ###    ########## ########   ########
 """
 
-# ── Tagline printed below the ASCII art ──────────────────────────
+# Tagline printed below the ASCII art
 TAGLINE = "  See through every wall.  |  Port Scanner + Banner Grabber"
 
 
@@ -28,13 +26,13 @@ def print_banner(target, ip, port_count):
     # Prints the full Lynkeus ASCII header with scan metadata
     """
 
-    # ── ASCII logo ───────────────────────────────────────────────
+    # ASCII logo
     print (CYAN + LYNKEUS_ASCII + RESET)
     print (DIM + TAGLINE + RESET)
     print ("")
     print (CYAN + "=" * 72 + RESET)
 
-    # ── Show resolved IP only if it differs from typed target ────
+    # Show resolved IP only if it differs from typed target
     if target != ip:
         print ("  Target  : " + BOLD + target + RESET + "  (" + ip + ")")
     else:
@@ -55,7 +53,7 @@ def print_result(result):
     port    = str(result["port"]).ljust(6)
     service = YELLOW + result["service"].ljust(12) + RESET
 
-    # ── Dim the placeholder so real banners stand out ────────────
+    # Dim the placeholder so real banners stand out
     if result["banner"] == "No banner":
         banner = DIM + "No banner" + RESET
     else:
