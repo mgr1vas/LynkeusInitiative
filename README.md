@@ -1,5 +1,5 @@
 # Lynkeus
-![Image](assets/lynkeus_logo.jpg)
+![Image](assets/lynkeus_logo.png)
 
 ### *See through every wall.*
 
