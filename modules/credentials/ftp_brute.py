@@ -1,13 +1,9 @@
 #!/usr/bin/env python3
-
-# ─────────────────────────────────────────────
 # modules/credentials/ftp_brute.py
 # Lynkeus Initiative — FTP Brute Forcer
 # Tests credentials against an FTP service
 # Also checks for anonymous login automatically
 # Lab use only — run against machines you own
-# ─────────────────────────────────────────────
-
 import ftplib
 import time
 import concurrent.futures
@@ -26,12 +22,12 @@ def ftp_anon_check(host, port, timeout):
         ftp.connect(host, port, timeout=timeout)
         ftp.login("anonymous", "anonymous@lab.local")
 
-        # ── Anonymous login succeeded ─────────────────────────────
+        # Anonymous login succeeded
         ftp.quit()
         return True
 
     except ftplib.error_perm:
-        # ── Anonymous login rejected ──────────────────────────────
+        # Anonymous login rejected
         return False
 
     except Exception:
@@ -49,16 +45,16 @@ def ftp_connect(host, port, username, password, timeout):
         ftp.connect(host, port, timeout=timeout)
         ftp.login(username, password)
 
-        # ── Login succeeded ───────────────────────────────────────
+        # Login succeeded
         ftp.quit()
         return True
 
     except ftplib.error_perm:
-        # ── Wrong credentials ─────────────────────────────────────
+        # Wrong credentials
         return False
 
     except Exception:
-        # ── Connection or protocol error ──────────────────────────
+        # Connection or protocol error
         return None
 
 
@@ -68,7 +64,7 @@ def run_ftp_brute(host, port, usernames, wordlist_path, threads, delay, timeout,
     # Checks anonymous access first, then runs credential wordlist
     """
 
-    # ── Load password wordlist ────────────────────────────────────
+    # Load password wordlist 
     try:
         with open(wordlist_path, "r", errors="ignore") as f:
             passwords = [line.strip() for line in f if line.strip()]
@@ -89,7 +85,7 @@ def run_ftp_brute(host, port, usernames, wordlist_path, threads, delay, timeout,
 
     found = []
 
-    # ── Always check anonymous login first ───────────────────────
+    # Always check anonymous login first 
     print (YELLOW + "[*] Checking anonymous login..." + RESET)
 
     if ftp_anon_check(host, port, timeout):
@@ -100,7 +96,7 @@ def run_ftp_brute(host, port, usernames, wordlist_path, threads, delay, timeout,
 
     print ("")
 
-    # ── Run credential brute force ────────────────────────────────
+    # Run credential brute force 
     for username in usernames:
 
         print (YELLOW + "[*] Testing username: " + username + RESET)
@@ -139,7 +135,7 @@ def run_ftp_brute(host, port, usernames, wordlist_path, threads, delay, timeout,
                 if delay > 0:
                     time.sleep(delay)
 
-    # ── Summary ───────────────────────────────────────────────────
+    # Summary 
     print (CYAN + "-" * 55 + RESET)
 
     if found:
