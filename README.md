@@ -11,10 +11,10 @@
 
 ## Capabilities
 
-Lynkeus is a modular port scanner and banner grabber written from scratch in Python.  
-It maps open ports on a target, identifies running services, and captures banner information, giving you a clear picture of what's exposed.
-
-Built for home lab and educational use. Run only against machines you own.
+The Lynkeus Initiative is not a finished product, it is a living framework.
+New modules are added as skills grow. Every capability in this project was built to be understood, not just used. If a tool exists here, the person who put it here can explain every line of it.
+Planned additions include post-exploitation modules, a unified CLI, SIEM integration, automated reporting, and a full recon-to-report pipeline. The framework grows with the operator.
+The mission is never complete. Lynkeus never stops looking.
 
 ---
 
