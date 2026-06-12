@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 
-# ─────────────────────────────────────────────
 # modules/network/packet_craft.py
 # Lynkeus Initiative — Packet Crafter
 # Build and send custom raw packets using Scapy
 # Useful for testing IDS rules and firewall responses
 # Lab use only — run against machines you own
-# ─────────────────────────────────────────────
 
-# ── Attempt to import scapy ───────────────────────────────────────
+# Attempt to import scapy 
 try:
     from scapy.all import IP, TCP, UDP, ICMP, Raw, send, sr1, conf
     conf.verb = 0
@@ -37,21 +35,21 @@ def send_syn(target_ip, target_port, source_port, count, timeout):
 
     for i in range(count):
 
-        # ── Build SYN packet ──────────────────────────────────────
+        #  Build SYN packet 
         packet = IP(dst=target_ip) / TCP(sport=source_port, dport=target_port, flags="S")
 
-        # ── Send and wait for response ────────────────────────────
+        # Send and wait for response 
         response = sr1(packet, timeout=timeout, verbose=0)
 
         if response:
             tcp_flags = response[TCP].flags if response.haslayer(TCP) else "?"
 
             if tcp_flags == "SA":
-                # ── SYN-ACK = port open ───────────────────────────
+                #  SYN-ACK = port open 
                 print (GREEN + "  [+] SYN-ACK received — port " + str(target_port) + " is OPEN" + RESET)
 
             elif tcp_flags == "RA":
-                # ── RST-ACK = port closed ─────────────────────────
+                #  RST-ACK = port closed 
                 print (RED + "  [-] RST-ACK received — port " + str(target_port) + " is CLOSED" + RESET)
 
             else:
@@ -83,7 +81,7 @@ def send_icmp(target_ip, payload, count, timeout):
 
     for i in range(count):
 
-        # ── Build ICMP packet with custom payload ─────────────────
+        # Build ICMP packet with custom payload 
         packet   = IP(dst=target_ip) / ICMP() / Raw(load=payload.encode())
         response = sr1(packet, timeout=timeout, verbose=0)
 
@@ -115,7 +113,7 @@ def send_udp(target_ip, target_port, payload, count, timeout):
 
     for i in range(count):
 
-        # ── Build UDP packet ──────────────────────────────────────
+        # Build UDP packet 
         packet   = IP(dst=target_ip) / UDP(dport=target_port) / Raw(load=payload.encode())
         response = sr1(packet, timeout=timeout, verbose=0)
 
