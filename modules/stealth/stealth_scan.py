@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 
-# ─────────────────────────────────────────────
 # modules/stealth/stealth_scan.py
 # Lynkeus Initiative — Stealth Scan Engine
 # Wraps the core scanner with timing randomisation
 # and decoy techniques to reduce IDS detection
 # Lab use only — run against machines you own
-# ─────────────────────────────────────────────
 
 import random
 import time
@@ -24,12 +22,12 @@ def stealth_probe(ip, port, timeout, min_delay, max_delay):
     # that IDS tools like Snort use to detect port scans
     """
 
-    # ── Random sleep before each probe ───────────────────────────
+    # Random sleep before each probe 
     jitter = random.uniform(min_delay, max_delay)
     time.sleep(jitter)
 
     try:
-        # ── Attempt TCP connection ────────────────────────────────
+        # Attempt TCP connection 
         with socket.create_connection((ip, port), timeout=timeout):
             pass
 
@@ -76,12 +74,12 @@ def run_stealth_scan(ip, ports, timeout, workers, min_delay, max_delay):
     print (CYAN + "-" * 55 + RESET)
     print ("")
 
-    # ── Shuffle port order to avoid sequential scan detection ─────
+    #  Shuffle port order to avoid sequential scan detection 
     randomised_ports = randomise_ports(ports)
 
     open_ports = []
 
-    # ── Lower thread count recommended for stealth ────────────────
+    # Lower thread count recommended for stealth 
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
 
         futures = {
@@ -97,14 +95,14 @@ def run_stealth_scan(ip, ports, timeout, workers, min_delay, max_delay):
             if result:
                 open_ports.append(result)
 
-                # ── Print open port with jitter info ──────────────
+                # Print open port with jitter info 
                 port_col    = BOLD + str(result["port"]).ljust(6) + RESET
                 service_col = YELLOW + result["service"].ljust(12) + RESET
                 jitter_col  = DIM + "(+" + str(result["jitter"]) + "s)" + RESET
 
                 print ("  " + GREEN + "OPEN" + RESET + "  " + port_col + "  " + service_col + "  " + jitter_col)
 
-    # ── Sort by port number ───────────────────────────────────────
+    # Sort by port number 
     open_ports.sort(key=lambda x: x["port"])
 
     print ("")
