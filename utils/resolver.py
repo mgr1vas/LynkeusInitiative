@@ -1,8 +1,6 @@
-# ─────────────────────────────────────────────
 # utils/resolver.py
 # Lynkeus — hostname to IP resolution
 # Before Lynkeus can look, he needs to know where to look
-# ─────────────────────────────────────────────
 
 import socket
 import sys
