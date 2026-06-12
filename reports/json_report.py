@@ -1,8 +1,6 @@
-# ─────────────────────────────────────────────
 # reports/json_report.py
 # Lynkeus — JSON report writer
 # Saves everything Lynkeus found to a structured file
-# ─────────────────────────────────────────────
 
 import json
 import datetime
@@ -15,7 +13,7 @@ def save_report(target, ip, results, output_file):
     # Includes target, resolved IP, timestamp, and all open ports
     """
 
-    # ── Build the report structure ───────────────────────────────
+    # Build the report structure
     report = {
         "tool":         "Lynkeus — See through every wall.",
         "scan_target":  target,
@@ -25,7 +23,7 @@ def save_report(target, ip, results, output_file):
         "open_ports":   results,
     }
 
-    # ── Write to file with readable indentation ──────────────────
+    # Write to file with readable indentation
     with open(output_file, "w") as f:
         json.dump(report, f, indent=2)
 
