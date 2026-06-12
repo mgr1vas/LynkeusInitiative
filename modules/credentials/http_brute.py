@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
-
-# ─────────────────────────────────────────────
 # modules/credentials/http_brute.py
 # Lynkeus Initiative — HTTP Basic Auth Brute Forcer
 # Tests credentials against HTTP basic authentication
 # Lab use only — run against machines you own
-# ─────────────────────────────────────────────
 
 import urllib.request
 import urllib.error
@@ -22,7 +19,7 @@ def http_auth_attempt(url, username, password, timeout):
     # Returns True on 200, False on 401, None on error
     """
 
-    # ── Encode credentials as base64 basic auth ───────────────────
+    # Encode credentials as base64 basic auth 
     credentials = base64.b64encode((username + ":" + password).encode()).decode()
     headers     = {"Authorization": "Basic " + credentials}
 
@@ -30,17 +27,17 @@ def http_auth_attempt(url, username, password, timeout):
         req      = urllib.request.Request(url, headers=headers)
         response = urllib.request.urlopen(req, timeout=timeout)
 
-        # ── 200 OK — credentials accepted ────────────────────────
+        # 200 OK — credentials accepted 
         if response.status == 200:
             return True
 
         return False
 
     except urllib.error.HTTPError as e:
-        # ── 401 Unauthorized — wrong credentials ──────────────────
+        # 401 Unauthorized — wrong credentials 
         if e.code == 401:
             return False
-        # ── Other HTTP error ──────────────────────────────────────
+        # Other HTTP error 
         return None
 
     except Exception:
@@ -52,7 +49,7 @@ def run_http_brute(url, usernames, wordlist_path, threads, delay, timeout, steal
     # Main HTTP basic auth brute force loop
     """
 
-    # ── Load wordlist ─────────────────────────────────────────────
+    # Load wordlist 
     try:
         with open(wordlist_path, "r", errors="ignore") as f:
             passwords = [line.strip() for line in f if line.strip()]
@@ -107,7 +104,7 @@ def run_http_brute(url, usernames, wordlist_path, threads, delay, timeout, steal
                 if delay > 0:
                     time.sleep(delay)
 
-    # ── Summary ───────────────────────────────────────────────────
+    # Summary 
     print (CYAN + "-" * 55 + RESET)
 
     if found:
