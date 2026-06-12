@@ -9,7 +9,7 @@
 
 ---
 
-## What it does
+## Capabilities
 
 Lynkeus is a modular port scanner and banner grabber written from scratch in Python.  
 It maps open ports on a target, identifies running services, and captures banner information, giving you a clear picture of what's exposed.
