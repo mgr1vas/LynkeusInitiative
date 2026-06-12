@@ -3,7 +3,7 @@
 
 ### *See through every wall.*
 
-> In Greek mythology, Lynkeus was the Argonaut gifted with superhuman vision —  
+> In Greek mythology, Lynkeus was the Argonaut gifted with superhuman vision, 
 > able to see through walls, into the earth, and across any obstacle.  
 > This tool carries his name.
 
@@ -12,7 +12,7 @@
 ## What it does
 
 Lynkeus is a modular port scanner and banner grabber written from scratch in Python.  
-It maps open ports on a target, identifies running services, and captures banner information — giving you a clear picture of what's exposed.
+It maps open ports on a target, identifies running services, and captures banner information, giving you a clear picture of what's exposed.
 
 Built for home lab and educational use. Run only against machines you own.
 
@@ -32,21 +32,21 @@ Built for home lab and educational use. Run only against machines you own.
 
 ```
 lynkeus/
-├── main.py                  # Entry point — run this
+├── main.py                  
 ├── README.md
 ├── .gitignore
 ├── core/
-│   ├── scanner.py           # Thread pool + scan orchestration
-│   └── probe.py             # TCP probe + banner grab logic
+│   ├── scanner.py           
+│   └── probe.py             
 ├── utils/
-│   ├── resolver.py          # Hostname → IP resolution
-│   ├── ports.py             # Port argument parser
-│   └── port_names.py        # Port number → service name map
+│   ├── resolver.py         
+│   ├── ports.py             
+│   └── port_names.py        
 ├── output/
-│   ├── colors.py            # ANSI colour constants
-│   └── display.py           # ASCII banner + all print functions
+│   ├── colors.py            
+│   └── display.py          
 └── reports/
-    └── json_report.py       # JSON report writer
+    └── json_report.py       
 ```
 
 ---
@@ -85,9 +85,6 @@ No external libraries — pure Python 3 standard library only.
 ```bash
 python3 --version   # Python 3.6+ required
 ```
-
----
-
 ## Disclaimer
 
 Lynkeus is built for educational use in your own home lab only.  
