@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
 
-# ─────────────────────────────────────────────
 # modules/network/arp_scan.py
 # Lynkeus Initiative — ARP Scanner
 # Discovers all live hosts on the local subnet
 # Maps IP addresses to MAC addresses
 # Lab use only — run on your own network
-# ─────────────────────────────────────────────
 
 import socket
 import struct
 import time
 
-# ── Attempt to import scapy — required for ARP ───────────────────
+# Attempt to import scapy — required for ARP 
 try:
     from scapy.all import ARP, Ether, srp, conf
     conf.verb = 0
@@ -23,7 +21,7 @@ except ImportError:
 from output.colors import GREEN, YELLOW, CYAN, DIM, BOLD, RESET
 
 
-# ── Known vendor prefixes (first 3 bytes of MAC) ─────────────────
+# Known vendor prefixes (first 3 bytes of MAC) 
 VENDOR_MAP = {
     "00:50:56": "VMware",
     "00:0c:29": "VMware",
@@ -67,12 +65,12 @@ def run_arp_scan(subnet, timeout):
     print (CYAN + "-" * 55 + RESET)
     print ("")
 
-    # ── Build ARP request packet ──────────────────────────────────
+    # Build ARP request packet 
     arp     = ARP(pdst=subnet)
     ether   = Ether(dst="ff:ff:ff:ff:ff:ff")
     packet  = ether / arp
 
-    # ── Send packet and collect replies ──────────────────────────
+    # Send packet and collect replies 
     answered, _ = srp(packet, timeout=timeout, retry=1)
 
     hosts = []
@@ -88,14 +86,14 @@ def run_arp_scan(subnet, timeout):
 
         hosts.append(host)
 
-        # ── Print each discovered host ────────────────────────────
+        # Print each discovered host 
         ip_col     = BOLD + received.psrc.ljust(18) + RESET
         mac_col    = YELLOW + received.hwsrc.ljust(20) + RESET
         vendor_col = DIM + vendor + RESET
 
         print ("  " + GREEN + "LIVE" + RESET + "  " + ip_col + mac_col + vendor_col)
 
-    # ── Summary ───────────────────────────────────────────────────
+    # Summary 
     print ("")
     print (CYAN + "-" * 55 + RESET)
     print ("  " + BOLD + str(len(hosts)) + " live host(s)" + RESET + " discovered on " + subnet)
