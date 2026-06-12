@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 
-# ─────────────────────────────────────────────
 # modules/stealth/ttl_spoof.py
 # Lynkeus Initiative — TTL Manipulator
 # Adjusts TTL values on outgoing packets
 # Confuses traceroute detection and hop-count analysis
 # Lab use only — run against machines you own
-# ─────────────────────────────────────────────
 
 import random
 
-# ── Attempt to import scapy ───────────────────────────────────────
+#  Attempt to import scapy 
 try:
     from scapy.all import IP, TCP, send, sr1, conf
     conf.verb = 0
@@ -21,7 +19,7 @@ except ImportError:
 from output.colors import GREEN, YELLOW, CYAN, DIM, BOLD, RESET
 
 
-# ── Common TTL values used by different operating systems ─────────
+#  Common TTL values used by different operating systems 
 OS_TTL_PROFILES = {
     "windows":    128,
     "linux":       64,
@@ -66,11 +64,11 @@ def send_spoofed_syn(target_ip, target_port, ttl_profile, count, timeout):
 
     for i in range(count):
 
-        # ── Randomise TTL per packet if random mode ───────────────
+        #  Randomise TTL per packet if random mode 
         if ttl_profile == "random":
             ttl = get_ttl("random")
 
-        # ── Build SYN packet with spoofed TTL ─────────────────────
+        #  Build SYN packet with spoofed TTL 
         packet   = IP(dst=target_ip, ttl=ttl) / TCP(dport=target_port, flags="S")
         response = sr1(packet, timeout=timeout, verbose=0)
 
