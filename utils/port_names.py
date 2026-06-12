@@ -1,9 +1,7 @@
-# ─────────────────────────────────────────────
 # utils/port_names.py
 # Lynkeus — well-known port to service name map
-# ─────────────────────────────────────────────
 
-# ── Common port number → service name mappings ───────────────────
+# Common port number → service name mappings
 PORT_NAMES = {
     21:    "FTP",
     22:    "SSH",
