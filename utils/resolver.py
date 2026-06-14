@@ -17,6 +17,6 @@ def resolve_target(target):
         return ip
 
     except socket.gaierror:
-        # ── Cannot resolve — exit with a clean message ───────────
+        # ── Cannot resolve — exit with a clean message
         print ("[!] Lynkeus could not resolve host: " + target)
         sys.exit(1)
