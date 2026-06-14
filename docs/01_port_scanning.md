@@ -11,7 +11,7 @@ A TCP port scan works by attempting a full or partial connection to each port on
 - **Filtered** — no response came back at all. A firewall is likely dropping the packets silently
 
 ## What Lynkeus does
-Lynkeus uses a full TCP connect scan — it completes the three-way handshake (SYN, SYN-ACK, ACK) to confirm a port is open, then immediately closes the connection and attempts to grab the service banner.
+Lynkeus uses a full TCP connect scan, it completes the three-way handshake (SYN, SYN-ACK, ACK) to confirm a port is open, then immediately closes the connection and attempts to grab the service banner.
 
 ## Why it matters in pentesting
 Port scanning is always the first step in a real engagement. You cannot attack what you cannot see. Before exploiting anything, you need to know what services are exposed, what versions they are running, and what the attack surface looks like.
