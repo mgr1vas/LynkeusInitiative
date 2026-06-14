@@ -8,12 +8,7 @@ from output.colors import CYAN, BOLD, RESET
 
 
 def save_report(target, ip, results, output_file):
-    """
-    # Builds a structured report dict and writes it to JSON
-    # Includes target, resolved IP, timestamp, and all open ports
-    """
-
-    # Build the report structure
+    # Build the report structure 
     report = {
         "tool":         "Lynkeus — See through every wall.",
         "scan_target":  target,
