@@ -1,4 +1,4 @@
-# Lynkeus Initiative — Commands
+# Lynkeus Initiative | Commands & Usage
 
 ---
 
