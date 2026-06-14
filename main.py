@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
-
-# ─────────────────────────────────────────────
 # main.py
 # Lynkeus — See through every wall.
 # Entry point — parses arguments and launches the scan
-# ─────────────────────────────────────────────
 
 import argparse
 from core.scanner import run_scan
@@ -16,7 +13,7 @@ from reports.json_report import save_report
 
 def main():
 
-    # ── Argument parser ──────────────────────────────────────────
+    # Argument parser
     parser = argparse.ArgumentParser(
         prog="lynkeus",
         description="Lynkeus — Port Scanner + Banner Grabber | Lab use only"
@@ -34,22 +31,22 @@ def main():
 
     args = parser.parse_args()
 
-    # ── Resolve target hostname to IP ────────────────────────────
+    # Resolve target hostname to IP
     ip = resolve_target(args.target)
 
-    # ── Parse port range or list ─────────────────────────────────
+    # Parse port range or list
     ports = parse_ports(args.ports)
 
-    # ── Print Lynkeus scan header ────────────────────────────────
+    # Print Lynkeus scan header 
     print_banner(args.target, ip, len(ports))
 
-    # ── Run the scan ─────────────────────────────────────────────
+    # Run the scan 
     open_ports = run_scan(ip, ports, args.timeout, args.workers)
 
-    # ── Print summary ────────────────────────────────────────────
+    # Print summary
     print_summary(len(open_ports), len(ports))
 
-    # ── Save JSON report if output flag was passed ───────────────
+    # Save JSON report if output flag was passed
     if args.output:
         save_report(args.target, ip, open_ports, args.output)
 
