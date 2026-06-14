@@ -4,19 +4,19 @@
 # Basic scan
 `python3 main.py 192.168.1.1`
 
-### Specific ports
+# Specific ports
 `python3 main.py 192.168.1.1 -p 22,80,443,3306,3389`
 
-### Full range with more threads
+# Full range with more threads
 `python3 main.py 192.168.1.1 -p 1-65535 -w 200`
 
-### Save report
+# Save report
 `python3 main.py 192.168.1.1 -p 1-1024 -o results.json`
 
-### Slow and careful
+# Slow and careful
 `python3 main.py 192.168.1.1 -p 1-1024 -t 3.0 -w 20`
 
-### Hostname target
+# Hostname target
 `python3 main.py scanme.nmap.org -p 1-1024`
 
 ---
