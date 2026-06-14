@@ -1,7 +1,7 @@
 # Port Scanning
 
 ## What it is
-Port scanning is the process of probing a target machine to find out which network ports are open, closed, or filtered. Every service running on a computer listens on a specific port number — SSH on 22, HTTP on 80, RDP on 3389. A port scanner systematically knocks on each door and records what answers.
+Port scanning is the process of probing a target machine to find out which network ports are open, closed, or filtered. Every service running on a computer listens on a specific port number, SSH on 22, HTTP on 80, RDP on 3389. A port scanner systematically knocks on each door and records what answers.
 
 ## How it works
 A TCP port scan works by attempting a full or partial connection to each port on the target. The three possible responses are:
