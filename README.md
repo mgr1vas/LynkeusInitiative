@@ -31,22 +31,44 @@ The mission is never complete. Lynkeus never stops looking.
 ## Folder Structure
 
 ```
-lynkeus/
-├── main.py                  
+LynkeusInitiative/
+├── main.py
 ├── README.md
 ├── .gitignore
+├── requirements.txt
 ├── core/
-│   ├── scanner.py           
-│   └── probe.py             
+│   ├── __init__.py
+│   ├── scanner.py
+│   └── probe.py
 ├── utils/
-│   ├── resolver.py         
-│   ├── ports.py             
-│   └── port_names.py        
+│   ├── __init__.py
+│   ├── resolver.py
+│   ├── ports.py
+│   └── port_names.py
 ├── output/
-│   ├── colors.py            
-│   └── display.py          
-└── reports/
-    └── json_report.py       
+│   ├── __init__.py
+│   ├── colors.py
+│   └── display.py
+├── reports/
+│   ├── __init__.py
+│   └── json_report.py
+└── modules/
+    ├── __init__.py
+    ├── credentials/
+    │   ├── __init__.py
+    │   ├── ssh_brute.py
+    │   ├── ftp_brute.py
+    │   └── http_brute.py
+    ├── network/
+    │   ├── __init__.py
+    │   ├── arp_scan.py
+    │   ├── dns_spoof.py
+    │   └── packet_craft.py
+    └── stealth/
+        ├── __init__.py
+        ├── stealth_scan.py
+        ├── user_agent.py
+        └── ttl_spoof.py   
 ```
 
 ---
