@@ -54,7 +54,7 @@ def flood_worker(target_ip, target_port, protocol, size):
             pass
 
 def run_volumetric_flood(target_ip, target_port, protocol, duration, threads, size=64):
-    """Manages the lifecycle of the volumetric network test."""
+    # Manages the lifecycle of the volumetric network test
     global packet_count, running
 
     packet_count = 0
