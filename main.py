@@ -410,7 +410,6 @@ MODULES = {
     "12": run_syn_flood_module,
     "13": run_volumetric_flood_module,
 }
-}
 
 
 def main():
