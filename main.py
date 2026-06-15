@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # main.py
 # Lynkeus Initiative
 # Main entry point — interactive CLI menu
@@ -40,6 +42,7 @@ def menu():
     print ("")
     print (BOLD + "  DENIAL OF SERVICE" + RESET)
     print ("  [12] SYN Flood")
+    print ("  [13] UDP / ICMP Flood")
     print ("")
     print (BOLD + "  OTHER" + RESET)
     print ("  [11] Run All Modules (test_all.py)")
@@ -356,6 +359,30 @@ def run_syn_flood_module():
 
     run_syn_flood(target_ip, target_port, duration, threads)
 
+def run_volumetric_flood_module():
+    # Module 13 — UDP/ICMP Volumetric Flooder
+    from modules.dos.udp_icmp_flood import run_volumetric_flood
+
+    print ("")
+    print (CYAN + "  VOLUME FLOOD TOOL (UDP/ICMP)" + RESET)
+    print (CYAN + "  " + "-" * 40 + RESET)
+
+    target_ip = get_input("Target IP")
+    protocol  = get_input("Protocol (UDP/ICMP)", "UDP").strip().upper()
+    
+    target_port = 0
+    if protocol == "UDP":
+        target_port = int(get_input("Target Port (e.g., for standard service testing)", "53"))
+        
+    duration  = int(get_input("Duration (seconds)", "10"))
+    threads   = int(get_input("Threads", "5"))
+    size      = int(get_input("Payload packet size (bytes)", "64"))
+
+    if protocol in ["UDP", "ICMP"]:
+        run_volumetric_flood(target_ip, target_port, protocol, duration, threads, size)
+    else:
+        print(RED + "  [!] Invalid protocol selection. Choose UDP or ICMP." + RESET)
+
 def run_test_all():
 
     # Module 11 — Run all modules via test_all.py
@@ -381,38 +408,32 @@ MODULES = {
     "10": run_user_agent,
     "11": run_test_all,
     "12": run_syn_flood_module,
+    "13": run_volumetric_flood_module,
+}
 }
 
 
 def main():
-
     # Print ASCII header once at startup
     print_banner_main()
-
     while True:
-
         # Show the menu
         menu()
-
         choice = input("  Select module: ").strip()
-
         if choice == "0":
             print ("")
             print (CYAN + "  Lynkeus out." + RESET)
             print ("")
             sys.exit(0)
-
         elif choice in MODULES:
             try:
                 MODULES[choice]()
             except KeyboardInterrupt:
                 print ("")
                 print (YELLOW + "  [!] Module interrupted. Returning to menu." + RESET)
-
         else:
             print ("")
             print (RED + "  [!] Invalid choice. Enter a number from the menu." + RESET)
-
         input("\n  Press Enter to return to menu...")
 
 
