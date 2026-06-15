@@ -1,5 +1,8 @@
+#!/usr/bin/env python3
+
 # output/display.py
-# Lynkeus — all terminal output lives here
+# Lynkeus Initiative
+# All terminal output lives here
 # Nothing else in the project prints to stdout
 
 import datetime
@@ -8,12 +11,13 @@ from output.colors import GREEN, YELLOW, CYAN, DIM, BOLD, RESET
 
 # ASCII art banner printed at startup
 LYNKEUS_ASCII = """
-     echo ".____                   __                        ";
-echo "|    |    ___.__. ____ |  | __ ____  __ __  ______";
-echo "|    |   <   |  |/    \\|  |/ // __ \\|  |  \\/  ___/";
-echo "|    |___ \\___  |   |  \\    <\\  ___/|  |  /\\___ \\ ";
-echo "|_______ \\/ ____|___|  /__|_ \\\\___  >____//____  >";
-echo "        \\/\\/         \\/     \\/    \\/           \\/ ";
+█     █   █ █   █ █   █ █████ █   █  ████   
+█░     █ █ ░██  █░█░ █ ░█░░░░░█░  █░█ ░░░░  
+█░░     █ ░ █░█ █░███ ░ ████░░█░░ █░░███░░░ 
+█░░     █░ ░█░░██░█░░█ ░█░░░░ █░░ █░░ ░░█   
+█████   █░░ █░░ █░█░░░█ █████░ ███ ░████░░  
+ ░░░░░   ░░  ░░  ░░░░  ░ ░░░░░  ░░░ ░░░░░ ░ 
+  ░░░░░   ░   ░   ░ ░   ░ ░░░░░  ░░░  ░░░░  
 """
 
 # Tagline printed below the ASCII art
@@ -21,9 +25,8 @@ TAGLINE = "  See through every wall.  |  Port Scanner + Banner Grabber"
 
 
 def print_banner(target, ip, port_count):
-    """
+
     # Prints the full Lynkeus ASCII header with scan metadata
-    """
 
     # ASCII logo
     print (CYAN + LYNKEUS_ASCII + RESET)
@@ -44,10 +47,9 @@ def print_banner(target, ip, port_count):
 
 
 def print_result(result):
-    """
+
     # Prints a single open port result as a formatted row
     # Dims the placeholder when no banner was returned
-    """
 
     port    = str(result["port"]).ljust(6)
     service = YELLOW + result["service"].ljust(12) + RESET
@@ -62,9 +64,8 @@ def print_result(result):
 
 
 def print_summary(open_count, total_count):
-    """
+
     # Prints the final scan summary line
-    """
 
     print ("")
     print (CYAN + "-" * 72 + RESET)
@@ -72,4 +73,13 @@ def print_summary(open_count, total_count):
            + GREEN + str(open_count) + " open port(s)" + RESET
            + " found out of " + str(total_count) + " scanned.")
     print (CYAN + "=" * 72 + RESET)
+    print ("")
+
+
+def print_banner_main():
+
+    # Prints the Lynkeus ASCII header at startup only
+
+    print (CYAN + LYNKEUS_ASCII + RESET)
+    print (DIM + TAGLINE + RESET)
     print ("")
