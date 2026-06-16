@@ -10,7 +10,7 @@ import threading
 
 # Attempt to import scapy
 try:
-    from scapy import IP, TCP, send, conf
+    from scapy.all import IP, TCP, send, conf
     conf.verb = 0
 except ImportError:
     print ("[!] scapy is not installed. Run: pip install scapy")
