@@ -8,7 +8,7 @@
 - httpbrute http://192.168.1.100/login admin wordlists/http_passes.txt 5 0.0
 
 # 3. Network Infrastructure Testing
-- dnsspoof 192.168.1.20 eth0 25
+- dnsspoof 192.168.10.20 eth0 25
 - craft syn 192.168.1.1 443
 - craft icmp 192.168.1.1 SYSTEM_CHECK
 - craft udp 192.168.1.1 53
